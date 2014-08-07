@@ -58,6 +58,9 @@ end
 bundle update
 bundle install
 
+
+
+
 #para heroku nuevo proyecto dentro de la carpeta
 heroku create
 
@@ -75,6 +78,24 @@ heroku git:remote -a <nombrenuevo>
 #abrir la app
 heroku open
 
+########################3#Pasos para nueva app en heroku#######################
+heroku create
+git init
+git add .
+git commit -am "Reinitialize"
+heroku create --stack cedar
+git push heroku master
+heroku run rake db:migrate
+------------------------poner nombre nuevo---------------------
+git remote rm heroku
+heroku git:remote -a <nombrenuevo>
+
+
 #autogenerar una app basica
 rails generate scaffold User name:string email:string
 
+#This simply updates the database with our new users data model.
+bundle exec rake db:migrate
+
+#autogenerar microposts
+rails generate scaffold Micropost content:string user_id:integer
