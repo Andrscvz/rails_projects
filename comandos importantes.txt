@@ -80,3 +80,12 @@ bundle exec rake db:migrate
 
 #autogenerar microposts
 rails generate scaffold Micropost content:string user_id:integer
+
+#downgrade rails
+gem uninstall rails
+get install rails --version 4.0.8 --no-ri --no-doc
+
+#In config/environments/development.rb change:
+Rails.application.configure do 
+#to
+SampleApp::Application.configure do
